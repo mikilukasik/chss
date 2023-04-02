@@ -1,0 +1,6 @@
+[submodule "chss-frontend"]
+	path = chss-frontend
+	url = git@github.com:mikilukasik/chss-frontend.git
+[submodule "chss-lambda-ai"]
+	path = chss-lambda-ai
+	url = git@github.com:mikilukasik/chss-lambda-ai.git
