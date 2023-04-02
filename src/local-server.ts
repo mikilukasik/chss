@@ -16,8 +16,6 @@ app.get("/lambda-ai", async (req, res) => {
     () => {}
   );
 
-  console.log({ result });
-
   return res.json(JSON.parse(result.body));
 });
 
