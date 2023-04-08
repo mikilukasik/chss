@@ -9,7 +9,8 @@
     "postinstall": "git submodule update --init --recursive && git submodule foreach npm i --recursive",
     "dev:frontend": "cd ./chss-frontend && npm run dev",
     "dev:lambda-ai": "cd ./chss-lambda-ai && npm run watch",
-    "dev": "npm run dev:frontend & npm run dev:lambda-ai & tsc -w & nodemon ./dist/local-server"
+    "dynamodb-start": "pgrep dynamodb-local || dynamodb-local",
+    "dev": "dynamodb-start & npm run dev:frontend & npm run dev:lambda-ai & tsc -w & AWS_REGION=eu-west-1 DDB_ENDPOINT=http://localhost:8000 nodemon ./dist/local-server"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.114",
     "@types/express": "^4.17.17",
+    "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "nodemon": "^2.0.22"
   }

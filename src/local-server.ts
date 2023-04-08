@@ -1,16 +1,19 @@
 import express from "express";
+import bodyParser from "body-parser";
 //@ts-expect-error no types there
 import { handler as lambdaAiHandler } from "../chss-lambda-ai/dist/index.js";
 import { APIGatewayProxyEvent, Context } from "aws-lambda";
 
 const app = express();
+app.use(bodyParser.json());
 
 app.use(express.static("./chss-frontend/dist"));
 
-app.get("/lambda-ai", async (req, res) => {
+app.post("/lambda-ai", async (req, res) => {
   const result: { body: string } = await lambdaAiHandler(
     {
       queryStringParameters: req.query,
+      body: JSON.stringify(req.body),
     } as APIGatewayProxyEvent,
     {} as Context,
     () => {}
