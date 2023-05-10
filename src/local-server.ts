@@ -1,10 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 //@ts-expect-error no types there
 import { handler as lambdaAiHandler } from "../chss-lambda-ai/dist/index.js";
 import { APIGatewayProxyEvent, Context } from "aws-lambda";
 
 const app = express();
+app.use(cors());
+
 app.use(bodyParser.json());
 
 app.use(express.static("./chss-frontend/dist"));
