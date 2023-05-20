@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 //@ts-expect-error no types there
-import { handler as lambdaAiHandler } from "../chss-lambda-ai/dist/index.js";
+import { handler as lambdaAiHandler } from "../chss-lambda-ai/dist/src";
 import { APIGatewayProxyEvent, Context } from "aws-lambda";
 
 const app = express();
@@ -13,14 +13,14 @@ app.use(bodyParser.json());
 app.use(express.static("./chss-frontend/dist"));
 
 app.post("/lambda-ai", async (req, res) => {
-  const result: { body: string } = await lambdaAiHandler(
+  const result = (await lambdaAiHandler(
     {
       queryStringParameters: req.query,
       body: JSON.stringify(req.body),
     } as APIGatewayProxyEvent,
     {} as Context,
     () => {}
-  );
+  )) as { body: string };
 
   return res.json(JSON.parse(result.body));
 });
