@@ -63,8 +63,10 @@ const getStartingState = () => {
 
     const engineConfig2 = {
       ...defaultEngineConfig,
-      moveScoreRario: 0.92,
-      winnerScoreRario: 0.4,
+      // moveScoreRario: 0.92,
+      // winnerScoreRario: 0.4,
+      moveScoreRario: Math.random() / Math.random(),
+      winnerScoreRario: Math.random() / Math.random(),
     };
 
     const result1 = await (
@@ -111,11 +113,11 @@ const getStartingState = () => {
       result2.balance -
       result1.balance;
 
-    // const engine2points = -engine1points;
+    const engine2points = -engine1points;
 
     await fs.appendFile(
       filename,
-      `${engineConfig1.moveScoreRario},${engineConfig1.winnerScoreRario},${engine1points}\n` //${engineConfig2.moveScoreRario},${engineConfig2.winnerScoreRario},${engine2points}\n`
+      `${engineConfig1.moveScoreRario},${engineConfig1.winnerScoreRario},${engine1points}\n${engineConfig2.moveScoreRario},${engineConfig2.winnerScoreRario},${engine2points}\n`
     );
   }
 })().catch(console.error);
