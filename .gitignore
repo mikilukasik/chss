@@ -2,3 +2,4 @@ node_modules
 dist
 tfjs_model
 data
+.DS_Store
