@@ -4,3 +4,6 @@
 [submodule "chss-lambda-ai"]
 	path = chss-lambda-ai
 	url = git@github.com:mikilukasik/chss-lambda-ai.git
+[submodule "chss-python-server"]
+	path = chss-python-server
+	url = git@github.com:mikilukasik/chss-python-server.git
