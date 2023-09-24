@@ -8,8 +8,9 @@
     "postinstall": "git submodule update --init --recursive && git submodule foreach npm i --recursive",
     "dev:frontend": "cd ./chss-frontend && npm run dev",
     "dev:lambda-ai": "cd ./chss-lambda-ai && npm run watch",
+    "dev:python-server": "cd ./chss-python-server/src && hupper -m server.server",
     "dynamodb-start": "dynamodb-local -sharedDb",
-    "dev": "npm run dynamodb-start & npm run dev:frontend & npm run dev:lambda-ai & tsc -w & AWS_REGION=eu-west-1 DDB_ENDPOINT=http://localhost:8000 nodemon ./dist/local-server"
+    "dev": "npm run dynamodb-start & npm run dev:frontend & npm run dev:lambda-ai & npm run dev:python-server & tsc -w & AWS_REGION=eu-west-1 DDB_ENDPOINT=http://localhost:8000 nodemon ./dist/local-server"
   },
   "repository": {
     "type": "git",
